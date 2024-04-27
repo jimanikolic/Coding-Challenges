@@ -41,7 +41,6 @@ int main() {
   
 }
 
-
 int* createArray(int size) {
   // pointer arr = dynamically allocates memory for an array of n ints on heap. 
   int *arr = new int(size);
@@ -66,10 +65,16 @@ void viewArray(int size, int* arr) {
 }
 
 int* reverseArray(int size, int* arr){
-  for(int i = 0; i < size; i++){
-    int* j = &arr[i];
-    arr[i] = arr[size-i-1];
-    arr[size-i-1] = *j;
+  int* start = arr;
+  int* end = arr + size -1;
+
+  while (start < end) {
+    *start ^= *end;
+    *end ^= *start;
+    *start ^= *end;
+
+    start++;
+    end--;
   }
 
   return arr;
