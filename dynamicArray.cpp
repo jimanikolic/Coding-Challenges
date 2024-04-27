@@ -43,11 +43,28 @@ int main() {
 
 int* createArray(int size) {
   // pointer arr = dynamically allocates memory for an array of n ints on heap. 
-  int *arr = new int(size);
+
+  // crazy bug I encountered: using int(size) allocates a single integer initialized with value size
+  // using int[size], allocates an array of integers, this worked up until values n = 8 as that is the size of an integer
+  // have to use [] for n > 7
+  int *arr = new (nothrow) int[size];
+
+  if (arr == nullptr) {
+        cerr << "Memory allocation failed. Exiting program." << endl;
+        exit(EXIT_FAILURE); // Terminate the program gracefully
+    }
 
   for (int i = 0; i < size; i++) {
+
+    int x = 0;
     cout << "enter item #" << i << endl;
-    cin >> arr[i];
+    while(!(cin >> x)){
+      cout << "item has to be an int value " << endl;
+      cin.clear();
+      cin.ignore();
+    }
+
+    arr[i] = x;
   }
 
   // returns a pointer to the first element of the array
@@ -69,6 +86,8 @@ int* reverseArray(int size, int* arr){
   int* end = arr + size -1;
 
   while (start < end) {
+
+    // Reverse the array via bitwise XOR, use pointers to retieve values, meaning no extra memory is used.
     *start ^= *end;
     *end ^= *start;
     *start ^= *end;
