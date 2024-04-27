@@ -5,15 +5,21 @@ Solution - Simple bubble sort acting on ascii values
 */
 #include <iostream>
 #include <string>
-
-
 using namespace std;
+
+
+string bubbleSort(string myString);
 
 int main () {
 
     string myString;
     myString = "TeSt Me PlEaSe";
-    // n is the total number of elemetns in the array
+    myString = bubbleSort(myString);
+    cout << myString;
+}
+
+string bubbleSort(string myString) {
+// n is the total number of elemetns in the array
     int n = myString.length();
 
     // simple Bubble sort, ascii value will pull out capital letters
@@ -30,7 +36,7 @@ int main () {
             }
         }
     }
-
-    cout << myString;
+    return myString;
 }
+
 
