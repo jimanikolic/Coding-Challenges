@@ -3,19 +3,13 @@ Challenge #6 - Write a program to model dna replication. Output the conservative
 semiconservative, and dispersive models. Then recreate the Meselson-Stahl experiment
 with lowercase nucleotides representing light isotopes and uppercase representing heavy isotopes.
 
-TODO: Transcribe the strand into RNA.
+TODO: Transcribe the strand into RNA. Add Recursion?
 Runtime - O(1), constant
 */
 
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <string>
-#include <stdio.h>
-#include <string.h>
 #include <random>
-
 
 using namespace std;
 
@@ -25,17 +19,11 @@ struct StringPair {
 };
 
 StringPair generateDNA(int size);
-
 string daughter(string dna);
-
 StringPair conservative(string dna, string daughterdna);
-
 StringPair semiconservative(string dna, string daughterdna);
-
 StringPair dispersive(string dna, string daughterdna);
-
 string disperseDNA(string dna, string daughterdna, std::mt19937& gen); 
-
 void printSequence(string dna, string daughterdna);
 
 int main() {
