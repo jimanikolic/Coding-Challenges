@@ -21,8 +21,8 @@ StringPair generateDNA(int size);
 string daughter(string dna);
 StringPair conservative(string dna, string daughterdna);
 StringPair semiconservative(string dna, string daughterdna);
-StringPair dispersive(string dna, string daughterdna);
-string disperseDNA(string dna, string daughterdna, std::mt19937& gen); 
+StringPair dispersive(string dna, string daughterdna, unsigned int seed);
+string disperseDNA(string dna, string daughterdna, unsigned int seed); 
 void printSequence(string dna, string daughterdna);
 
 int main() {
@@ -74,14 +74,18 @@ int main() {
   printSequence(dupdaughterdna, dupdaughterdna1);
   printSequence(dupdna, dupdna1);
   
-  result = dispersive(dna, daughterdna);
+  unsigned int seed = 1234;
+  result = dispersive(dna, daughterdna, seed);
   dupdna = result.dupdna;
   dupdaughterdna = result.dupdaughterdna;
+
+  
   cout << "Dispersive Duplicated DNA strands round 1: \n" << endl;
   printSequence(dupdna, dupdaughterdna);
   printSequence(dupdna, dupdaughterdna);
 
-  result1 = dispersive(dupdna, dupdaughterdna);
+  seed = 4321;
+  result1 = dispersive(dupdna, dupdaughterdna, seed);
   dupdna1 = result1.dupdna;
   dupdaughterdna1 = result1.dupdaughterdna;
 
@@ -188,32 +192,37 @@ StringPair semiconservative(string dna, string daughterdna) {
 
 }
 
-StringPair dispersive(string dna, string daughterdna) {
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  string dupdna = disperseDNA(dna, daughterdna, gen);
-  string dupdaughterdna = disperseDNA(daughterdna, dna, gen);
-  return {dupdna, dupdaughterdna};
+StringPair dispersive(string dna, string daughterdna, unsigned int seed) {
+    srand(time(nullptr)); // Seed for random number generation
+
+    string dupdna = disperseDNA(dna, daughterdna, seed);
+    string dupdaughterdna = disperseDNA(daughterdna, dna, seed);
+
+    return {dupdna, dupdaughterdna};
 }
 
-string disperseDNA(string dna, string daughterdna, std::mt19937& gen) {
-  int n = dna.length();
-  string oldfragments, newfragments;
+string disperseDNA(string dna, string daughterdna, unsigned int seed) {
+    int n = dna.length();
+    string oldfragments, newfragments;
 
-  for (int i = 0; i < n; i++) {
-    if (gen() % 2 == 0){
-        oldfragments.push_back(dna[i]);
-        newfragments.push_back('x');
+    // Seed the random number generator with the provided seed
+    srand(seed);
+
+    for (int i = 0; i < n; i++) {
+        if (rand() % 2 == 0) {
+            oldfragments.push_back(dna[i]);
+            newfragments.push_back('x');
+        } else {
+            newfragments.push_back(daughterdna[i]);
+            oldfragments.push_back('x');
+        }
     }
-    else {
-        newfragments.push_back(daughterdna[i]);
-        oldfragments.push_back('x');
-    }
-  }
-  string newfragments_complementary = daughter(newfragments);
+
+    string newfragments_complementary = daughter(newfragments);
 
     string combined_dna;
     combined_dna.reserve(n);
+
     for (int i = 0; i < n; ++i) {
         if (oldfragments[i] == 'x') {
             combined_dna.push_back(newfragments_complementary[i]);
