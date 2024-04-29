@@ -2,14 +2,13 @@
 Challenge #6 - Write a program to model dna replication. Output the conservative, 
 semiconservative, and dispersive models. Then recreate the Meselson-Stahl experiment
 with lowercase nucleotides representing light isotopes and uppercase representing heavy isotopes.
-
-TODO: Transcribe the strand into RNA. Add Recursion?
 Runtime - O(1), constant
 */
 
 
 #include <iostream>
 #include <random>
+#include <string>
 
 using namespace std;
 
