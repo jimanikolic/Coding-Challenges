@@ -12,21 +12,22 @@ Runtime - O(1), constant
 
 using namespace std;
 
+//for returning two strings from a function
 struct StringPair {
     string dupdna;
     string dupdaughterdna;
 };
 
-StringPair generateDNA(int size);
-string daughter(string dna);
-StringPair conservative(string dna, string daughterdna);
-StringPair semiconservative(string dna, string daughterdna);
-string disperseDNA(string dna, string daughterdna, unsigned int seed); 
-void printSequence(string dna, string daughterdna);
+StringPair generateDNA(int size); //generates a double stranded set of dna, two strings length size, complementary
+StringPair conservative(string dna, string daughterdna); //duplicates the generated dna conservatively
+StringPair semiconservative(string dna, string daughterdna); //duplicates the generated dna semiconservatively
+string dispersive(string dna, string daughterdna, unsigned int seed); //duplicates the generated dna dispersively, basically 50/50 mix 
+string daughter(string dna); //generates complimentary strand of dna
+void printSequence(string dna, string daughterdna); //prints a double stranded dna
 
 int main() {
 
-  int size;
+  int size = 0;
   cout << "How large is your DNA Sequence: ";
   cin >> size;
 
@@ -34,7 +35,7 @@ int main() {
   string dna = result.dupdna;
   string daughterdna = result.dupdaughterdna;
 
-  cout << "Generated DNA strand with low mass:" <<endl;
+  cout << "Generated DNA strand with low mass:" <<endl; //low mass meaning all nucleotides are lowercase - modeling messelson stahl, capitals are high mass
   printSequence(dna, daughterdna);
 
 
@@ -54,7 +55,6 @@ int main() {
   printSequence(dupdna, dupdaughterdna);
   printSequence(dupdaughterdna1, dupdna1);
 
-
   result = semiconservative(dna, daughterdna);
   dupdna = result.dupdna;
   dupdaughterdna = result.dupdaughterdna;
@@ -73,20 +73,21 @@ int main() {
   printSequence(dupdaughterdna, dupdaughterdna1);
   printSequence(dupdna, dupdna1);
   
-  unsigned int seed = 1234;
-  dupdna = disperseDNA(dna, daughterdna, seed);
-  dupdaughterdna = disperseDNA(daughterdna, dna, seed);
+  unsigned int seed = 11234; //change for randomization in dispersive sequence
+  dupdna = dispersive(dna, daughterdna, seed);
+  dupdaughterdna = dispersive(daughterdna, dna, seed);
   cout << "Dispersive Duplicated DNA strands round 1: \n" << endl;
   printSequence(dupdna, dupdaughterdna);
   printSequence(dupdna, dupdaughterdna);
 
-  seed = 4321;
-  dupdna1 = disperseDNA(dna, daughterdna, seed);
-  dupdaughterdna1 = disperseDNA(daughterdna, dna, seed);
+  seed = 758; //change for randomization in dispersive sequence
+  dupdna1 = dispersive(dna, daughterdna, seed);
+  dupdaughterdna1 = dispersive(daughterdna, dna, seed);
   cout << "Dispersive Duplicated DNA strands round 2: \n" << endl;
   printSequence(dupdna, dupdaughterdna);
-  printSequence(dupdna, dupdaughterdna);
   printSequence(dupdna1, dupdaughterdna1);
+
+  printSequence(dupdna, dupdaughterdna);
   printSequence(dupdna1, dupdaughterdna1);
 }
 
@@ -184,7 +185,7 @@ StringPair semiconservative(string dna, string daughterdna) {
 
 }
 
-string disperseDNA(string dna, string daughterdna, unsigned int seed) {
+string dispersive(string dna, string daughterdna, unsigned int seed) {
     int n = dna.length();
     string oldfragments, newfragments;
 
