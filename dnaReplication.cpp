@@ -21,7 +21,6 @@ StringPair generateDNA(int size);
 string daughter(string dna);
 StringPair conservative(string dna, string daughterdna);
 StringPair semiconservative(string dna, string daughterdna);
-StringPair dispersive(string dna, string daughterdna, unsigned int seed);
 string disperseDNA(string dna, string daughterdna, unsigned int seed); 
 void printSequence(string dna, string daughterdna);
 
@@ -75,20 +74,15 @@ int main() {
   printSequence(dupdna, dupdna1);
   
   unsigned int seed = 1234;
-  result = dispersive(dna, daughterdna, seed);
-  dupdna = result.dupdna;
-  dupdaughterdna = result.dupdaughterdna;
-
-  
+  dupdna = disperseDNA(dna, daughterdna, seed);
+  dupdaughterdna = disperseDNA(daughterdna, dna, seed);
   cout << "Dispersive Duplicated DNA strands round 1: \n" << endl;
   printSequence(dupdna, dupdaughterdna);
   printSequence(dupdna, dupdaughterdna);
 
   seed = 4321;
-  result1 = dispersive(dupdna, dupdaughterdna, seed);
-  dupdna1 = result1.dupdna;
-  dupdaughterdna1 = result1.dupdaughterdna;
-
+  dupdna1 = disperseDNA(dna, daughterdna, seed);
+  dupdaughterdna1 = disperseDNA(daughterdna, dna, seed);
   cout << "Dispersive Duplicated DNA strands round 2: \n" << endl;
   printSequence(dupdna, dupdaughterdna);
   printSequence(dupdna, dupdaughterdna);
@@ -144,8 +138,6 @@ StringPair generateDNA(int size) {
     else if (dna[i] == 'g') {
       daughter.push_back('c');
     }
-
-
   }
   return {dna, daughter};
 
@@ -190,15 +182,6 @@ StringPair semiconservative(string dna, string daughterdna) {
   string dupdaughterdna = daughter(daughterdna);
   return {dupdna, dupdaughterdna};
 
-}
-
-StringPair dispersive(string dna, string daughterdna, unsigned int seed) {
-    srand(time(nullptr)); // Seed for random number generation
-
-    string dupdna = disperseDNA(dna, daughterdna, seed);
-    string dupdaughterdna = disperseDNA(daughterdna, dna, seed);
-
-    return {dupdna, dupdaughterdna};
 }
 
 string disperseDNA(string dna, string daughterdna, unsigned int seed) {
