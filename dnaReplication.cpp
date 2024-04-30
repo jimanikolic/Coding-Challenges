@@ -58,7 +58,6 @@ int main() {
   result = semiconservative(dna, daughterdna);
   dupdna = result.dupdna;
   dupdaughterdna = result.dupdaughterdna;
-
   cout << "Semi-Conservative Duplicated DNA strands round 1: \n" <<endl;
   printSequence(dna, dupdna);
   printSequence(daughterdna, dupdaughterdna);
@@ -66,7 +65,6 @@ int main() {
   result1 = semiconservative(dupdna, dupdaughterdna);
   dupdna1 = result1.dupdna;
   dupdaughterdna1 = result1.dupdaughterdna;
-
   cout << "Semi-Conservative Duplicated DNA strands round 2: \n" <<endl;
   printSequence(dna, dupdna);
   printSequence(daughterdna, dupdaughterdna);
@@ -86,7 +84,6 @@ int main() {
   cout << "Dispersive Duplicated DNA strands round 2: \n" << endl;
   printSequence(dupdna, dupdaughterdna);
   printSequence(dupdna1, dupdaughterdna1);
-
   printSequence(dupdna, dupdaughterdna);
   printSequence(dupdna1, dupdaughterdna1);
 }
@@ -144,33 +141,6 @@ StringPair generateDNA(int size) {
 
 }
 
-string daughter(string dna) {
-  int n = dna.length();
-  string repdna;
-  repdna.reserve(n);
-
-  for(int i = 0; i < n; i++) {
-    if (dna[i] == 'a' || dna[i] =='A') {
-      repdna.push_back('T');
-    }
-    else if (dna[i] == 't'|| dna[i] =='T') {
-      repdna.push_back('A');
-    }
-    else if (dna[i] == 'c' || dna[i] =='C') {
-      repdna.push_back('G');
-    }
-    else if (dna[i] == 'g' || dna[i] =='G') {
-      repdna.push_back('C');
-    }
-    else if (dna[i] == 'x') {
-      repdna.push_back('x');
-    }
-  }
-  return repdna;
-
-
-}
-
 StringPair conservative(string dna, string daughterdna) {
   string dupdna = daughter(dna);
   string dupdaughterdna = daughter(daughterdna);
@@ -215,4 +185,29 @@ string dispersive(string dna, string daughterdna, unsigned int seed) {
         }
     }
     return combined_dna;
+}
+
+string daughter(string dna) {
+  int n = dna.length();
+  string repdna;
+  repdna.reserve(n);
+
+  for(int i = 0; i < n; i++) {
+    if (dna[i] == 'a' || dna[i] =='A') {
+      repdna.push_back('T');
+    }
+    else if (dna[i] == 't'|| dna[i] =='T') {
+      repdna.push_back('A');
+    }
+    else if (dna[i] == 'c' || dna[i] =='C') {
+      repdna.push_back('G');
+    }
+    else if (dna[i] == 'g' || dna[i] =='G') {
+      repdna.push_back('C');
+    }
+    else if (dna[i] == 'x') {
+      repdna.push_back('x');
+    }
+  }
+  return repdna;
 }
