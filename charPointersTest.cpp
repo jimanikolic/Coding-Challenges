@@ -16,12 +16,12 @@ void show_bytes(byte_pointer start, size_t len) {
 }
 
 int main(){
-  short x = 12345;
+  short x = 2;
   short mx = -x; 
 
   show_bytes((byte_pointer) &x, sizeof(short));
   show_bytes((byte_pointer) &mx, sizeof(short));
-
+  //windows is little endian
 
 
 
