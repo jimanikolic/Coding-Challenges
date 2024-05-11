@@ -59,8 +59,8 @@ print("Names not following you back")
 for user in nonfollowers:
     print(user)
 
-nonfollowers = [user for user in followers if user not in following]
+nonfollowing = [user for user in followers if user not in following]
 
 print ("\nNames you don't follow back")
-for user in nonfollowers:
+for user in nonfollowing:
     print(user)
