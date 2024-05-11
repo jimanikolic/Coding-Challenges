@@ -37,6 +37,5 @@ Runtime - O(1), constant
 
 Challenge #7 -Write a function that adds two numbers and determines wether or not they can overflow, runtime O(1)
 
-Challenge #8 - Write a examines two csv files from instagram to determine
-who you are following that does not follow you back and vice-versa.
+Challenge #8 - Write a examines two JSONfiles from instagram to determine who you are following that does not follow you back and vice-versa.
 Runtime O(1) constant
