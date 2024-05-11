@@ -35,7 +35,9 @@ semiconservative, and dispersive models. Then recreate the Meselson-Stahl experi
 with lowercase nucleotides representing light isotopes and uppercase representing heavy isotopes.
 Runtime - O(1), constant
 
-Challenge #7 -Write a function that adds two numbers and determines wether or not they can overflow, runtime O(1)
+Challenge #7 -Write a function that adds two numbers and determines wether or not they can overflow, 
+runtime O(1)
 
-Challenge #8 - Write a examines two JSONfiles from instagram to determine who you are following that does not follow you back and vice-versa.
+Challenge #8 - Write a examines two JSON files from instagram to determine who you are following 
+that does not follow you back and vice-versa.
 Runtime O(1) constant
