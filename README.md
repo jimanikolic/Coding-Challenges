@@ -41,5 +41,4 @@ runtime O(1)
 Challenge #8 - Write a examines two JSON files from instagram to determine who you are following 
 that does not follow you back and vice-versa.
 Runtime O(1) constant. Two implementation, python and cpp. Python uses downloaded data from instagram, cpp
-uses downloaded data from chrome extensions. I have a scraper made in python but my bot accounts and seemingly my ip
-was banned so I can not use it anymore.
+uses downloaded data from chrome extensions. I have a scraper made in python but my bot accounts were caught and I recieved a cease and desist.
