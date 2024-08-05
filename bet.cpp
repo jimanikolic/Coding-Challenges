@@ -1,3 +1,9 @@
+/*
+Challenge - How can you always win roulette? 
+Model a roulette wheel and devise a way to always 
+come out positive assuming there is not a maximum bet at the wheel.
+*/
+
 #include <stdio.h>
 #include <cstdlib>
 #include <iostream>
