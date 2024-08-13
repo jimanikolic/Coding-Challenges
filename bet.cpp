@@ -23,10 +23,10 @@ int main () {
     int losscount = 0;
     int bet = 50;
     int money = 50000;
-    int range = 100;\
+    int range = 500000;
     int winnings = 0;
 
-    while (winnings + money <= 500000) {
+    while (winnings + money <= range) {
         string result = roulette();
 
         if (result == "black") {
